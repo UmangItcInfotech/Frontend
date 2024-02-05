@@ -1,0 +1,43 @@
+<div class="container mt-4">
+    <div class="card">
+      <!-- ... (existing code) ... -->
+      <div class="card-footer">
+        <button class="btn btn-primary" [routerLink]="['/blogposts']">
+          Back to Blog Posts
+        </button>
+        <button class="btn btn-primary" (click)="viewComments()">
+          View Comments
+        </button>
+        <button class="btn btn-primary" (click)="showAddCommentForm = true" *ngIf="!showAddCommentForm">
+          Add Comment
+        </button>
+      </div>
+    </div>
+  
+    <!-- Placeholder for displaying comments -->
+    <div *ngIf="comments && comments.length > 0" class="mt-4">
+      <h3>Comments:</h3>
+      <ul>
+        <li *ngFor="let comment of comments">
+          {{ comment.commentText }} - {{ comment.userEmail }}
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Add Comment Form -->
+    <div *ngIf="showAddCommentForm" class="mt-4">
+      <h3>Add Comment:</h3>
+      <form (submit)="addComment()" class="add-comment-form">
+        <div class="form-group">
+          <label for="commentText">Comment:</label>
+          <textarea id="commentText" [(ngModel)]="newComment.commentText" name="commentText" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="userEmail">Your Email:</label>
+          <input id="userEmail" [(ngModel)]="newComment.userEmail" name="userEmail" type="email" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Comment</button>
+      </form>
+    </div>
+  </div>
+  
