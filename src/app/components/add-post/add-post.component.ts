@@ -24,8 +24,8 @@ export class AddPostComponent {
       shortDescription: ['', Validators.required],
       content: ['', Validators.required],
       featuredImageUrl: ['', Validators.required],
-      author: ['', Validators.required],
-      userEmail: [''], 
+      author: ['TEST', Validators.required],
+      userEmail: ['test@test.com'], 
     });
   }
 

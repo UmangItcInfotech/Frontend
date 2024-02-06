@@ -12,3 +12,10 @@
     resize: vertical;
   }
   
+  #author{
+    display: none;
+  }
+
+  #userEmail{
+    display: none;
+  }

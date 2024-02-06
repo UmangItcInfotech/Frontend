@@ -3,7 +3,8 @@ export class comment {
       public commentId: string,
       public commentText?: string,
       public userEmail?: string,
-      public blogId?: string
+      public blogId?: string,
+      public name?: string
     ) {}
   }
   

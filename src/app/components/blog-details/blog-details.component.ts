@@ -52,7 +52,8 @@ export class BlogDetailsComponent implements OnInit {
     if(this.showAddCommentForm){
       this.commentForm = this.formBuilder.group({
         commentText: ['', Validators.required], 
-        userEmail: ['test@test.co']
+        userEmail: ['test@test.co'],
+        Name: ['test']
       });
     }
   }
