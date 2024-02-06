@@ -39,7 +39,7 @@ export class LoginComponent  {
       this.authService.loginUser(formData).subscribe({
         next: (value) => {
           console.log('Login successful:', value);
-          this.postService.setAccessToken(value.accessToken);
+          this.postService.setAccessToken(value.token);
           this.router.navigate(['/blogposts']);
         },
         error: (error) => {

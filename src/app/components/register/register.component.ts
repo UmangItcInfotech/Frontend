@@ -25,7 +25,7 @@ export class RegisterComponent {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required]],
-      dob: ['', [Validators.required]], // You might need a custom validator for Date format
+      dob: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, this.validatePassword]],
     });
@@ -39,6 +39,7 @@ export class RegisterComponent {
   onSubmit() {
     if (this.registrationForm.valid) {
       const user: RegisterUser = this.registrationForm.value;
+      user.dob = new Date("2024-02-06T03:49:15.166Z");
 
       this.authService.registerUser(user).subscribe({
         next: (value) => {

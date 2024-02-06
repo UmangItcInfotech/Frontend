@@ -33,13 +33,15 @@ export class PostService  {
   }
  
   private getHeaders(): HttpHeaders {
+    const token = this.getAccessToken();
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.accessToken}`
     });
     return headers;
-  } 
-
+  }
+  
   getBlogPosts(): Observable<BlogPost[]> {
     const headers = this.getHeaders();
     return this.http.get<BlogPost[]>(`${this.apiBaseUrl}/api/Blogs`, { headers });
@@ -62,19 +64,19 @@ export class PostService  {
 
   addComment(comment:CommentRequest, blogId: string): Observable<CommentRequest>{
     const headers = this.getHeaders();
-    return this.http.post<CommentRequest>(`${this.apiBaseUrl}/api/Comments/${blogId}`, { headers })
+    return this.http.post<CommentRequest>(`${this.apiBaseUrl}/api/Comments/${blogId}`, comment, { headers })
   }
 
   uploadImage(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('file', file, file.name);
-    return this.http.post(`${this.apiBaseUrl}/api/Images`, formData);
+    return this.http.post(`http://localhost:5005/api/Images`, formData);
   }
 
   getFullImageUrl(filePath: string): string {
     const baseUrl = this.apiBaseUrl;
     const relativePath = filePath.replace('file:///', '').replace(/\\/g, '/');
     const filename = relativePath.substring(relativePath.lastIndexOf('/') + 1);
-    return `${baseUrl}/static/images/${filename}`;
+    return `http://localhost:5005/static/images/${filename}`;
   }
 }
