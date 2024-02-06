@@ -19,7 +19,7 @@
   }
   
   .form-group {
-    margin-bottom: 20px; /* Increase margin for better spacing */
+    margin-bottom: 20px; 
   }
   
   label {
@@ -29,7 +29,7 @@
   
   .form-control {
     width: 100%;
-    padding: 10px; /* Adjust padding for better input appearance */
+    padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -37,7 +37,7 @@
   
   .btn-primary {
     width: 100%;
-    padding: 12px; /* Adjust padding for better button appearance */
+    padding: 12px; 
     background-color: #007bff;
     color: #fff;
     cursor: pointer;

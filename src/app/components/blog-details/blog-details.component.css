@@ -53,3 +53,52 @@
 .btn-primary:hover {
     background-color: #0056b3;
 }
+
+.comments-list {
+    margin-top: 20px;
+  }
+  
+  .comment {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .comment-user {
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .comment-date {
+    color: #666;
+  }
+  
+  .comment-text {
+    margin-top: 5px;
+  }
+  
+
+
+  #userEmail {
+    display: none;
+  }
+  
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.card-footer button {
+    padding: 10px 20px; 
+}
+
+.card-footer button:not(:last-child) {
+    margin-right: 10px; 
+}

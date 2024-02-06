@@ -25,11 +25,12 @@
     border-bottom: 1px solid #ddd;
   }
   
-  .custom-card-body {
-    height: 250px; /* Adjust the value as needed */
-    overflow: hidden;
-    padding: 20px;
+  .custom-card-img {
+    max-height: 400px; 
+    width: 100%; 
+    object-fit: cover; 
   }
+  
   
   .card-title {
     font-size: 1.5rem;

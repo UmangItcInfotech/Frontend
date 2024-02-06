@@ -4,17 +4,19 @@ import { Router } from '@angular/router';
 import { LoginRequest } from '../../models/userModels/loginUser.model';
 import { AuthUserService } from '../../services/authservices/auth-user.service';
 import { PostService } from '../../services/postservices/post.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent  {
   loginForm: FormGroup;
   showPassword: boolean = false;
+  showErrorMessage: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -44,7 +46,8 @@ export class LoginComponent  {
         },
         error: (error) => {
           console.error('Login failed:', error);
-          this.router.navigate(['/register']);
+          //this.router.navigate(['/register']);
+          this.showErrorMessage = true;
         },
       });
     }

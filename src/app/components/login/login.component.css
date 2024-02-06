@@ -18,7 +18,7 @@
 }
 
 .form-group {
-    margin-bottom: 20px; /* Increase margin for better spacing */
+    margin-bottom: 20px; 
 }
 
 label {
@@ -28,7 +28,7 @@ label {
 
 .form-control {
     width: 100%;
-    padding: 10px; /* Adjust padding for better input appearance */
+    padding: 10px; 
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -36,7 +36,7 @@ label {
 
 .btn-primary {
     width: 100%; 
-    padding: 12px; /* Adjust padding for better button appearance */
+    padding: 12px; 
     background-color: #007bff;
     color: #fff;
     cursor: pointer;
@@ -73,4 +73,10 @@ label {
     transform: translateY(-50%);
     cursor: pointer;
     color: #007bff;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
 }

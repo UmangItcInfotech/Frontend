@@ -16,6 +16,7 @@
           </span>
         </div>
       </div>
+      <div class="error-message" *ngIf="showErrorMessage">Invalid Credentials. Please try again</div>
       <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Log in</button>
     </form>
   
