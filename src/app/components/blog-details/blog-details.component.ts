@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/rou
 import { BlogPost } from '../../models/blogModels/blogPost.model';
 import { CommentRequest } from '../../models/commentModels/commentRequest.model';
 import { PostService } from '../../services/postservices/post.service';
+import { BlogRequest } from '../../models/blogModels/blogRequest.model';
 
 @Component({
   selector: 'app-blog-details',
@@ -15,17 +16,10 @@ import { PostService } from '../../services/postservices/post.service';
   styleUrl: './blog-details.component.css'
 })
 export class BlogDetailsComponent implements OnInit {
-  blogPost: BlogPost;
+  blogPost: BlogRequest = new BlogRequest('', '', '', '', new Date(), '', '');
   featuredImageUrl: SafeResourceUrl;
-  comments: any[];
-  showAddCommentForm: boolean = false;
-  newComment: CommentRequest = { commentText: '', userEmail: '', blogId: '' };
 
-  constructor(
-    private route: ActivatedRoute,
-    private sanitizer: DomSanitizer,
-    private postService: PostService
-  ) {}
+  constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer, private postService: PostService) { }
 
   ngOnInit(): void {
     const postId = this.route.snapshot.paramMap.get('id');
@@ -34,43 +28,5 @@ export class BlogDetailsComponent implements OnInit {
 
       this.featuredImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(blogPost.featuredImageUrl);
     });
-
-    // Load comments when the component initializes
-    this.loadComments(postId);
-
-    // Set blogId for the new comment
-    this.newComment.blogId = postId;
-  }
-
-  viewComments(): void {
-    // Load comments when the "View Comments" button is clicked
-    const postId = this.route.snapshot.paramMap.get('id');
-    this.loadComments(postId);
-  }
-
-  addComment(): void {
-    this.postService.addComment(this.newComment, this.newComment.blogId).subscribe(
-      comment => {
-        // Reload comments after adding a new comment
-        this.loadComments(this.newComment.blogId);
-
-        // Reset the newComment object
-        this.newComment = { commentText: '', userEmail: '', blogId: this.newComment.blogId };
-      },
-      error => {
-        console.error('Error adding comment:', error);
-      }
-    );
-  }
-
-  private loadComments(blogId: string): void {
-    this.postService.getComments(blogId).subscribe(
-      comments => {
-        this.comments = comments;
-      },
-      error => {
-        console.error('Error fetching comments:', error);
-      }
-    );
   }
 }

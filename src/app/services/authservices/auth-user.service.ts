@@ -8,7 +8,7 @@ import { RegisterUser } from '../../models/userModels/registerUser.model';
   providedIn: 'root'
 })
 export class AuthUserService {
-  private apiBaseUrl = environment.apiBaseUrl;
+  private apiBaseUrl = environment.userBaseUrl;
 
   constructor(private httpClient: HttpClient) { }
 

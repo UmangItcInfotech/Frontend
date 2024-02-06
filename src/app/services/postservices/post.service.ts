@@ -11,7 +11,9 @@ import { CommentRequest } from '../../models/commentModels/commentRequest.model'
   providedIn: 'root'
 })
 export class PostService  {
-  private apiBaseUrl = environment.apiBaseUrl;
+  private blogapiBaseUrl = environment.blogBaseUrl;
+  private commetnapiBaseUrl = environment.commentBaseUrl;
+  private imageapiBaseUrl = environment.imageBaseUrl;
   private accessToken: string | null = null;
 
   constructor(private http: HttpClient) { }
@@ -44,27 +46,27 @@ export class PostService  {
   
   getBlogPosts(): Observable<BlogPost[]> {
     const headers = this.getHeaders();
-    return this.http.get<BlogPost[]>(`${this.apiBaseUrl}/api/Blogs`, { headers });
+    return this.http.get<BlogPost[]>(`${this.blogapiBaseUrl}/api/Blogs`, { headers });
   }
 
   getBlogPostById(id: string): Observable<BlogPost> {
     const headers = this.getHeaders();
-    return this.http.get<BlogPost>(`${this.apiBaseUrl}/api/Blogs/${id}`, { headers });
+    return this.http.get<BlogPost>(`${this.blogapiBaseUrl}/api/Blogs/${id}`, { headers });
   }
 
   addBlogPost(blogAdd: BlogRequest): Observable<BlogRequest> {
     const headers = this.getHeaders();
-    return this.http.post<BlogPost>(`${this.apiBaseUrl}/api/Blogs`, blogAdd, { headers });
+    return this.http.post<BlogPost>(`${this.blogapiBaseUrl}/api/Blogs`, blogAdd, { headers });
   }
 
   getComments(blogId: string): Observable<comment[]>{
     const headers = this.getHeaders();
-    return this.http.get<comment[]>(`${this.apiBaseUrl}/api/Comments/${blogId}`, { headers })
+    return this.http.get<comment[]>(`${this.commetnapiBaseUrl}/api/Comments/${blogId}`, { headers })
   }
 
   addComment(comment:CommentRequest, blogId: string): Observable<CommentRequest>{
     const headers = this.getHeaders();
-    return this.http.post<CommentRequest>(`${this.apiBaseUrl}/api/Comments/${blogId}`, comment, { headers })
+    return this.http.post<CommentRequest>(`${this.commetnapiBaseUrl}/api/Comments/${blogId}`, comment, { headers })
   }
 
   uploadImage(file: File): Observable<any> {
@@ -74,7 +76,7 @@ export class PostService  {
   }
 
   getFullImageUrl(filePath: string): string {
-    const baseUrl = this.apiBaseUrl;
+    const baseUrl = this.imageapiBaseUrl;
     const relativePath = filePath.replace('file:///', '').replace(/\\/g, '/');
     const filename = relativePath.substring(relativePath.lastIndexOf('/') + 1);
     return `http://localhost:5005/static/images/${filename}`;
