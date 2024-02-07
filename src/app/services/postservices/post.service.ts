@@ -6,12 +6,14 @@ import { BlogPost } from '../../models/blogModels/blogPost.model';
 import { BlogRequest } from '../../models/blogModels/blogRequest.model';
 import { comment } from '../../models/commentModels/comment.model';
 import { CommentRequest } from '../../models/commentModels/commentRequest.model';
+import { User } from '../../models/userModels/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService  {
   private blogapiBaseUrl = environment.blogBaseUrl;
+  private userapiBaseUrl = environment.userBaseUrl;
   private commetnapiBaseUrl = environment.commentBaseUrl;
   private imageapiBaseUrl = environment.imageBaseUrl;
   private accessToken: string | null = null;
@@ -42,6 +44,11 @@ export class PostService  {
       'Authorization': `Bearer ${this.accessToken}`
     });
     return headers;
+  }
+
+  getUserInfo(): Observable<User>{
+    const headers = this.getHeaders();
+    return this.http.get<any>(`${this.userapiBaseUrl}/getInfo`, { headers });
   }
   
   getBlogPosts(): Observable<BlogPost[]> {
