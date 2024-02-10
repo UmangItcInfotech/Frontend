@@ -79,13 +79,11 @@ export class PostService  {
   uploadImage(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('file', file, file.name);
-    return this.http.post(`http://localhost:5005/api/Images`, formData);
+    return this.http.post(`${this.imageapiBaseUrl}/api/Images`, formData);
   }
 
-  getFullImageUrl(filePath: string): string {
+  getFullImageUrl(path: string): string {
     const baseUrl = this.imageapiBaseUrl;
-    const relativePath = filePath.replace('file:///', '').replace(/\\/g, '/');
-    const filename = relativePath.substring(relativePath.lastIndexOf('/') + 1);
-    return `http://localhost:5005/static/images/${filename}`;
+    return path.replace(/^\/app/, baseUrl);
   }
 }
